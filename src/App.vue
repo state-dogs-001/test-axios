@@ -1,32 +1,42 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app color="orange" dark fixed>
+      <div class="d-flex align-center">
+        <h1 class="mr-2">ANIME</h1>
+        <v-icon>mdi-open-in-new</v-icon>
+      </div>
+
+      <v-spacer />
+
+      <v-btn target="_blank" text @click="toTop">
+        <span class="mr-2">Back to the Top</span>
+        <v-icon>mdi-navigation</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <Anime style="margin-top: 10px" />
+    </v-main>
+
+    <v-footer padless dark color="orange" style="margin-top: 60px">
+      <v-col class="text-center">
+        {{ new Date().getFullYear() }} — <strong>WELCOME TO ANIME PAGE</strong>
+      </v-col>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script>
+import Anime from "./views/AnimeAPI.vue";
+export default {
+  name: "App",
+  components: {
+    Anime
+  },
+  methods: {
+    toTop() {
+      this.$vuetify.goTo(0);
+    }
+  }
+};
+</script>
